@@ -7,7 +7,6 @@ const useLocation = Default.useLocation
     , useHistory = Default.useHistory
     , BrowserRouter = Default.BrowserRouter
 
-
 const Body = styled(motion.div)`
   position: absolute;
 `
