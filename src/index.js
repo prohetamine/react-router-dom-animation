@@ -124,5 +124,5 @@ export {
   NavLink,
   Redirect,
   useLocation,
-  useHistory,
+  useHistory
 }
