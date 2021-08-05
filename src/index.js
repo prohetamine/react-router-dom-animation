@@ -55,13 +55,7 @@ const Animation = (props) => {
   const newPath = location.pathname+location.search
   const oldPath = window.appReactRouterDomAnimationPathname
   const [isAnimation, setAnimation] = useState(false)
-  const [isRelocation, setRelocation] = useState(false)
-
-  useEffect(() => {
-    if (!isAnimation) {
-      setRelocation(newPath !== oldPath)
-    }
-  }, [newPath, oldPath, isAnimation])
+  const isRelocation = !isAnimation ? newPath !== oldPath : true
 
   return (
     <Body
