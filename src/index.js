@@ -19,7 +19,7 @@ const Link = (props) => {
     <Default.Link
       {...props}
       onClick={
-        (e) => {
+        e => {
           if (props.to === location.pathname+location.search) {
             e.preventDefault()
           }
@@ -36,7 +36,7 @@ const NavLink = (props) => {
     <Default.NavLink
       {...props}
       onClick={
-        (e) => {
+        e => {
           window.appReactRouterDomAnimationAction = props.animate
           props.onClick && props.onClick(e)
         }
