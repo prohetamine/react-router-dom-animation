@@ -6,6 +6,8 @@ import styled from 'styled-components'
 const useLocation = Default.useLocation
     , useHistory = Default.useHistory
     , BrowserRouter = Default.BrowserRouter
+    , HashRouter = Default.HashRouter
+    , MemoryRouter = Default.MemoryRouter
 
 const Body = styled(motion.div)`
   position: absolute;
@@ -14,6 +16,20 @@ const Body = styled(motion.div)`
 const Link = (props) => {
   return (
     <Default.Link
+      {...props}
+      onClick={
+        (e) => {
+          window.appReactRouterDomAnimationAction = props.animate
+          props.onClick && props.onClick(e)
+        }
+      }
+    />
+  )
+}
+
+const NavLink = (props) => {
+  return (
+    <Default.NavLink
       {...props}
       onClick={
         (e) => {
@@ -38,6 +54,7 @@ const Animation = (props) => {
   const isPrev = window.appReactRouterDomAnimationAction === 'prev'
   const newPath = location.pathname+location.search
   const oldPath = window.appReactRouterDomAnimationPathname
+  const [isAnimation, setAnimation] = useState(false)
 
   return (
     <Body
@@ -56,20 +73,11 @@ const Animation = (props) => {
           : props.exit.prev
       }
       transition={props.transition}
+      onAnimationComplete={() => setAnimation(false)}
+      onAnimationStart={() => setAnimation(true)}
     >
       {
-        props.component && props.component(props.routeEvent, {
-          initial: newPath !== oldPath
-                    ? isPrev
-                        ? props.initial.prev.forChildren
-                        : props.initial.next.forChildren
-                    : props.initial.default.forChildren,
-          animate: props.animate.forChildren,
-          exit: isPrev
-                    ? props.exit.next.forChildren
-                    : props.exit.prev.forChildren,
-          transition: props.transition.forChildren
-        })
+        props.component && props.component(props.routeEvent, isAnimation)
       }
     </Body>
   )
@@ -104,9 +112,12 @@ const Switch = ({ children }) => {
 
 export {
   BrowserRouter,
+  HashRouter,
+  MemoryRouter,
   Switch,
   Route,
   Link,
+  NavLink,
   Redirect,
   useLocation,
   useHistory,
