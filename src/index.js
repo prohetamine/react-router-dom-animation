@@ -84,7 +84,7 @@ const Animation = (props) => {
       onAnimationStart={() => setAnimation(true)}
     >
       {
-        props.component && props.component(props.routeEvent, isAnimation, isRelocation)
+        props.component && props.component(props.routeEvent, { isAnimation, isRelocation })
       }
     </Body>
   )
