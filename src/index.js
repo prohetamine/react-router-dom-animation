@@ -9,6 +9,20 @@ const useLocation = Default.useLocation
     , HashRouter = Default.HashRouter
     , MemoryRouter = Default.MemoryRouter
 
+window.appReactRouterDomAnimationLoadSite = false
+const useLoad = () => {
+  const [load, setLoad] = useState(false)
+  const isLoad = window.appReactRouterDomAnimationLoadSite || load
+
+  useEffect(() => {
+    if (load) {
+      window.appReactRouterDomAnimationLoadSite = true
+    }
+  }, [load])
+
+  return [isLoad, setLoad]
+}
+
 const Body = styled(motion.div)`
   position: absolute;
 `
@@ -124,5 +138,6 @@ export {
   NavLink,
   Redirect,
   useLocation,
-  useHistory
+  useHistory,
+  useLoad
 }
