@@ -14,11 +14,15 @@ const Body = styled(motion.div)`
 `
 
 const Link = (props) => {
+  const location = useLocation()
   return (
     <Default.Link
       {...props}
       onClick={
         (e) => {
+          if (props.to === location.pathname+location.search && props.repeat === 'disabled') {
+            e.preventDefault()
+          }
           window.appReactRouterDomAnimationAction = props.animate
           props.onClick && props.onClick(e)
         }
@@ -55,7 +59,6 @@ const Animation = (props) => {
   const newPath = location.pathname+location.search
   const oldPath = window.appReactRouterDomAnimationPathname
   const [isAnimation, setAnimation] = useState(false)
-  const isRelocation = !isAnimation ? newPath !== oldPath : true
 
   return (
     <Body
@@ -78,7 +81,7 @@ const Animation = (props) => {
       onAnimationStart={() => setAnimation(true)}
     >
       {
-        props.component && props.component(props.routeEvent, { isAnimation, isRelocation })
+        props.component && props.component(props.routeEvent, isAnimation)
       }
     </Body>
   )
