@@ -13,3 +13,9 @@ Hi, I haven't written the documentation yet, I don't have time yet, I'll definit
 [simple vertical-horizonal animation](https://codesandbox.io/s/react-router-dom-animation-simple-vertical-horizonal-animation-0ojgh)
 
 [opacity animation](https://codesandbox.io/s/react-router-dom-animation-opacity-animation-24l50)
+
+
+
+
+
+[simple vertical scale animation](https://codesandbox.io/s/react-router-dom-animation-simple-vertical-scale-animation-ucdgq)

@@ -20,7 +20,7 @@ const Link = (props) => {
       {...props}
       onClick={
         (e) => {
-          if (props.to === location.pathname+location.search && props.repeat === 'disabled') {
+          if (props.to === location.pathname+location.search) {
             e.preventDefault()
           }
           window.appReactRouterDomAnimationAction = props.animate
